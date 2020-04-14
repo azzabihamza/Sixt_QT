@@ -1,10 +1,9 @@
-#ifndef CONNEXION_H
-#define CONNEXION_H
+#ifndef CONNECTION_H
+#define CONNECTION_H
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
 
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSql>
-
-using namespace std;
 class Connexion
 {
 private:
@@ -15,4 +14,4 @@ public:
     void fermerConnexion();
 };
 
-#endif // CONNEXION_H
+#endif // CONNECTION_H
