@@ -40,7 +40,7 @@ public:
     bool ajouterContratLocation();
     bool supprimerContratLocation(int);
     bool modifierContratLocation(int);
-    QSqlQueryModel *rechercherContrat(int);
+    QSqlQueryModel *rechercherContrat(QString);
     QSqlQueryModel *afficherContrat();
 
 

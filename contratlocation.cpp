@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDate>
 #include <QDateTime>
+#include <QPushButton>
 
 ContratLocation::ContratLocation()
 {
@@ -79,6 +80,9 @@ bool ContratLocation::modifierContratLocation(int id)
 
 QSqlQueryModel* ContratLocation::afficherContrat()
 {
+    QPushButton *delButton;
+    delButton = new QPushButton();
+    delButton->setText("Supprimer");
     QSqlQueryModel * model= new QSqlQueryModel();
     model->setQuery("select * from CONTRATLOCATION");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID CONTRAT"));
@@ -88,19 +92,20 @@ QSqlQueryModel* ContratLocation::afficherContrat()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("ID AGENT"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("REFERENCE VEHICULE"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("ID CLIENT"));
+
     return model;
 }
 
-QSqlQueryModel* ContratLocation::rechercherContrat(int id)
+QSqlQueryModel* ContratLocation::rechercherContrat(QString id)
 {
 
-    QSqlQuery query;
-    QString res= QString::number(id);
-    QSqlQueryModel * model= new QSqlQueryModel();
-    query.prepare("select * from CONTRATLOCATION WHERE IDCONTRAT = :id");
-    query.bindValue(":id", res);
+    QSqlQuery* query = new QSqlQuery();
 
-    model->setQuery(query);
+    QSqlQueryModel * model= new QSqlQueryModel();
+    query->prepare("select * from CONTRATLOCATION WHERE IDCONTRAT like '"+id+"%'");
+    query->exec();
+
+    model->setQuery(*query);
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID CONTRAT"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE DEBUT"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE FIN"));

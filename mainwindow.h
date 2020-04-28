@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QPushButton>
+#include <QDate>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,9 +16,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QDate dateSystem;
+    QPushButton *button;
 
 private slots:
-    void on_pushButton_clicked();
+    
+    
+    void on_pushButtonContrat_clicked();
 
 private:
     Ui::MainWindow *ui;
