@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/src/img">
+        <file>src/img/warning.png</file>
+        <file>src/img/succes.png</file>
+        <file>src/img/error.png</file>
+        <file>src/img/contrat.png</file>
+        <file>src/img/agent.png</file>
+        <file>src/img/client.png</file>
+        <file>src/img/marketing.png</file>
+        <file>src/img/payment.png</file>
+        <file>src/img/vehicule.png</file>
+        <file>src/img/logo.png</file>
+        <file>src/img/off.png</file>
+        <file>src/img/restart.png</file>
+    </qresource>
+</RCC>
