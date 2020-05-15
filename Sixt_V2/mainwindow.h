@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include<QPushButton>
 #include <QDate>
+#include "interfacecontrat.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,13 +19,21 @@ public:
     ~MainWindow();
     QDate dateSystem;
     QPushButton *button;
+    QString getNomAgent();
+    void setNomAgent(QString);
 
 private slots:
     
     
     void on_pushButtonContrat_clicked();
 
+    void on_pushButtonVehicule_clicked();
+
+    void on_deconnexion_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QString nomAgent;
+
 };
 #endif // MAINWINDOW_H

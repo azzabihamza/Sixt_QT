@@ -4,6 +4,12 @@
 #include <QString>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QFile>
+#include <QTextStream>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPainter>
+#include <QCalendarWidget>
 
 interfaceContrat::interfaceContrat(QWidget *parent) :
     QDialog(parent),
@@ -11,20 +17,114 @@ interfaceContrat::interfaceContrat(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    popUp = new popup();
     this->dateSystem = QDate::currentDate();
+    ui->stackedWidget->setCurrentIndex(0);
+
+    ui->currentDate->setText(QDate::currentDate().toString());
+
+    QTimer *timer=new QTimer(this);
+        connect(timer,SIGNAL(timeout()),this,SLOT(UpadateTime()));
+        timer->start(1000);
+
+    // ************** PAGE ACCEUIL ************* //
+
+    QPixmap logo(":/src/img/src/img/logo.png");
+    QPixmap contrat(":/src/img/src/img/handshake.png");
+    QPixmap assurance(":/src/img/src/img/insurance.png");
+    QPixmap home(":/src/img/src/img/social-media.png");
+    QPixmap historique(":/src/img/src/img/historique.png");
+    QPixmap close(":/src/img/src/img/off.png");
+    QPixmap bg(":/src/img/src/img/bg.png");
+
+    ui->bgInterfaceContrat->setPixmap(bg);
+
+    ui->logo->setPixmap(logo.scaled(150,150,Qt::KeepAspectRatio));
+
+    ui->PBacceuil->setIcon(home);
+    ui->PBacceuil->setIconSize(QSize(30,30));
+
+    ui->PBacceuil_5->setIcon(home);
+    ui->PBacceuil_5->setIconSize(QSize(30,30));
+
+    ui->PBlocation->setIcon(contrat);
+    ui->PBlocation->setIconSize(QSize(30,30));
+
+    ui->PBassurance->setIcon(assurance);
+    ui->PBassurance->setIconSize(QSize(30,30));
+
+    ui->PBhistorique->setIcon(historique);
+    ui->PBhistorique->setIconSize(QSize(30,30));
+
+    ui->PBclose->setIcon(close);
+    ui->PBclose->setIconSize(QSize(30,30));
+
+    // ****** INTERFACE GESTION CONTRAT LOCATION ***********//
+
     ui->tableContratLocation->setModel(contratLocation.afficherContrat());
-    ui->message->hide();
+    loadHistorique();
+
+    QSqlQueryModel* modal = new QSqlQueryModel();
+    QSqlQueryModel* modalAgent = new QSqlQueryModel();
+    QSqlQueryModel* modalReference = new QSqlQueryModel();
+    QSqlQueryModel* modalClient = new QSqlQueryModel();
+
+    modal->setQuery("select NUMERO from AGENCE");
+    ui->comboBox_Idagence->setModel(modal);
 
 
+    modalAgent->setQuery("select ID from AGENT");
+    ui->comboBox_Idagent->setModel(modalAgent);
 
+    modalReference->setQuery("select REF from VEHICULES");
+    ui->comboBox_Reference->setModel(modalReference);
 
-    ui->label_8->setText("-");
+    modalClient->setQuery("select CIN from CLIENT");
+    ui->comboBox_Idclient->setModel(modalClient);
+
+    ui->dateEdit_debutLocation->setCalendarPopup(true);
+    ui->dateEdit_finLocation->setCalendarPopup(true);
+    ui->dateEdit_debutLocation->setDate(dateSystem);
+    ui->dateEdit_finLocation->setDate(dateSystem);
+
+    ui->label_8->setText("");
+
+    //*********** INTERFACE GESTION CONTRAT ASSURANCE **********//
+
+    QSqlQueryModel* modalMatricule = new QSqlQueryModel();
+    ui->tableAssurance->setModel(contratAssurance.afficherAssurance());//refresh
+
+    ui->comboBoxTypeAssurance->addItems({ "Assurance au tiers", "Assurance au tiers plus", "Assurance tous risques", "Assurance auto au kilomètre" });
+    modalMatricule->setQuery("select PLAQUE from VEHICULES");
+    ui->comboBoxMatriculeVehicule->setModel(modalMatricule);
+
+    ui->DateDebutAssurance->setCalendarPopup(true);
+    ui->DateDebutAssurance->setDate(dateSystem);
+    ui->DateFinAssurance->setCalendarPopup(true);
+    ui->DateFinAssurance->setDate(dateSystem);
+
+    ui->PBacceuil_4->setIcon(home);
+    ui->PBacceuil_4->setIconSize(QSize(30,30));
 }
 
 interfaceContrat::~interfaceContrat()
 {
     delete ui;
 }
+
+void interfaceContrat::loadHistorique()
+{
+    QFile file ("E:\\Projects\\Projet QT\\Sixt_V2\\src\\Historique.txt");
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            QMessageBox::information(0,"info",file.errorString());
+        }
+        QTextStream in (&file);
+        ui->Historique->setText(in.readAll());
+}
+
+
+// *********************************** ACTION DE GESTION LOCATION ******************************************//
 
 void interfaceContrat::on_pushButton_AjouterContrat_clicked()
 {
@@ -39,42 +139,54 @@ void interfaceContrat::on_pushButton_AjouterContrat_clicked()
 
     if(DateDebut < dateSystem || DateFin < dateSystem || DateFin < DateDebut)
     {
-        ui->message->show();
+
+
         text="DATE SAISIE EST INCORRECT !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/warning.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("warning");
+
     }else if(IdAgence == NULL || IdAgent =="" || referenceVehicule=="" || IdClient=="")
     {
-        ui->message->show();
+
         text="LES CHAMPS SAISIE SONT INCORRECT !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/warning.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("warning");
+
     }else if(location.ajouterContratLocation())
     {
+        QString date=dateSystem.toString();
+        QString idagence=QString::number(IdAgence);
+        QFile file("E:\\Projects\\Projet QT\\Sixt_V2\\src\\Historique.txt");
+              if (!file.open(QIODevice::WriteOnly | QIODevice::Append |QIODevice::Text))
+                  return;
+              QTextStream cout(&file);
+              QString message2="\n L'historique des Contrat à ajouter :"+date+" "+idagence+" "+IdAgent+" "+IdClient+"";
+              cout << message2;
+        loadHistorique();
         ui->tableContratLocation->setModel(contratLocation.afficherContrat());//refresh
+
         ui->dateEdit_debutLocation->clear();
         ui->dateEdit_finLocation->clear();
         ui->lineEdit_Idagence->clear();
         ui->lineEdit_Idagent->clear();
         ui->lineEdit_Reference->clear();
         ui->lineEdit_Idclient->clear();
-        ui->label_8->setText("-");
-        ui->message->show();
+
+        ui->label_8->setText("");
+
         text="LOCATION AJOUTER AVEC SUCCES";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/succes.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("succes");
+
 
 
     }else
     {
-        ui->message->show();
+
         text="ERREUR !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/error.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #D8000C;background-color: #FFBABA;}");
+        popUp->setPopupText(text);
+        popUp->show("error");
+
 
     }
 
@@ -95,18 +207,16 @@ void interfaceContrat::on_pushButton_ModifieContrat_clicked()
 
     if(DateDebut < dateSystem || DateFin < dateSystem || DateFin < DateDebut)
     {
-        ui->message->show();
+
         text="DATE SAISIE EST INCORRECT !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/warning.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("warning");
     }else if(IdAgence == NULL || IdAgent =="" || referenceVehicule=="" || IdClient=="")
     {
-        ui->message->show();
+
         text="LES CHAMPS SAISIE SONT INCORRECT !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/warning.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("warning");
     }else if(location.modifierContratLocation(IdContrat))
     {
         ui->tableContratLocation->setModel(contratLocation.afficherContrat());//refresh
@@ -116,20 +226,18 @@ void interfaceContrat::on_pushButton_ModifieContrat_clicked()
         ui->lineEdit_Idagent->clear();
         ui->lineEdit_Reference->clear();
         ui->lineEdit_Idclient->clear();
-        ui->label_8->setText("-");
-        ui->message->show();
+        ui->label_8->setText("");
+
         text="CONTRAT MODIFIER AVEC SUCCES";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/succes.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+        popUp->setPopupText(text);
+        popUp->show("succes");
 
     }else
     {
-        ui->message->show();
+
         text="ERREUR !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/error.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #D8000C;background-color: #FFBABA;}");
+        popUp->setPopupText(text);
+        popUp->show("error");
 
     }
 }
@@ -138,30 +246,28 @@ void interfaceContrat::on_pushButton_supprimerContrat_clicked()
 {
     int IdContrat = ui->label_8->text().toInt();
 
-    if(contratLocation.supprimerContratLocation(IdContrat))
-    {
-        ui->tableContratLocation->setModel(contratLocation.afficherContrat());//refresh
-        ui->dateEdit_debutLocation->clear();
-        ui->dateEdit_finLocation->clear();
-        ui->lineEdit_Idagence->clear();
-        ui->lineEdit_Idagent->clear();
-        ui->lineEdit_Reference->clear();
-        ui->lineEdit_Idclient->clear();
-        ui->label_8->setText("-");
-        ui->message->show();
-        text="CONTRAT SUPPRIMER AVEC SUCCES";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/succes.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #4F8A10;background-color: #DFF2BF;}");
+    if(IdContrat==0){
 
-    }
-    else
-        ui->message->show();
-        text="ERREUR !";
-        ui->message->setTextFormat(Qt::RichText);
-        ui->message->setText("<img src=:/src/img/src/img/error.png align=middle > " + text);
-        ui->message->setStyleSheet("QLabel { border: 1px solid;margin: 10px 0px;padding: 15px 10px 15px 50px;background-repeat: no-repeat;background-position: 10px center;color: #D8000C;background-color: #FFBABA;}");
+            text="ERREUR VEUILLEZ SELECTIONNER UN CONTRAT A SUPPRIMER !";
+            popUp->setPopupText(text);
+            popUp->show("error");
+        }else
+        {
+            contratLocation.supprimerContratLocation(IdContrat);
+            ui->tableContratLocation->setModel(contratLocation.afficherContrat());//refresh
+            ui->dateEdit_debutLocation->clear();
+            ui->dateEdit_finLocation->clear();
+            ui->lineEdit_Idagence->clear();
+            ui->lineEdit_Idagent->clear();
+            ui->lineEdit_Reference->clear();
+            ui->lineEdit_Idclient->clear();
+            ui->label_8->setText("");
 
+            text="CONTRAT SUPPRIMER AVEC SUCCES";
+            popUp->setPopupText(text);
+            popUp->show("succes");
+
+        }
 
 }
 
@@ -171,10 +277,21 @@ void interfaceContrat::on_pushButton_clicked()
     ui->tableContratLocation->setModel(contratLocation.rechercherContrat(IdContrat));
 }
 
+void interfaceContrat::on_radioButton_new_clicked()
+{
+    ui->tableContratLocation->setModel(contratLocation.triDateDec());
+}
+
+void interfaceContrat::on_radioButton_old_clicked()
+{
+    ui->tableContratLocation->setModel(contratLocation.triDateCroi());
+}
+
+
 void interfaceContrat::on_tableContratLocation_activated(const QModelIndex &index)
 {
 
-    ui->message->hide();
+
     QString val=ui->tableContratLocation->model()->data(index).toString();
 
     QSqlQuery query;
@@ -195,3 +312,128 @@ void interfaceContrat::on_tableContratLocation_activated(const QModelIndex &inde
         }
     }
 }
+
+void interfaceContrat::on_pushButton_2_clicked()
+{
+    loadHistorique();
+}
+
+void interfaceContrat::on_imprimer_clicked()
+{
+    QPrinter printer;
+        printer.setPrinterName("Contrat");
+        QPrintDialog dialog(&printer,this);
+        if(dialog.exec()== QDialog::Rejected) return;//cntrl de voir si ca marche ou pas
+        ui->Historique->print(&printer);
+}
+
+void interfaceContrat::on_PBlocation_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void interfaceContrat::on_PBassurance_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+
+void interfaceContrat::on_PBhistorique_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void interfaceContrat::on_PBacceuil_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void interfaceContrat::on_PBacceuil_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void interfaceContrat::on_PBacceuil_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void interfaceContrat::on_comboBox_Idagence_activated(const QString &arg1)
+{
+    ui->lineEdit_Idagence->setText(arg1);
+}
+
+void interfaceContrat::on_comboBox_Idagent_activated(const QString &arg1)
+{
+    ui->lineEdit_Idagent->setText(arg1);
+}
+
+void interfaceContrat::on_comboBox_Reference_activated(const QString &arg1)
+{
+    ui->lineEdit_Reference->setText(arg1);
+}
+
+void interfaceContrat::on_comboBox_Idclient_activated(const QString &arg1)
+{
+    ui->lineEdit_Idclient->setText(arg1);
+}
+
+
+
+// *********************************** ACTION DE GESTION ASSURANCE ******************************************//
+
+
+void interfaceContrat::on_pushButton_AjouterAssurance_clicked()
+{
+    QString type = ui->comboBoxTypeAssurance->currentText();
+    QString assureur = ui->lineEdit_Assureur->text();
+    float tarif = ui->lineEdit_Tarif->text().toFloat();
+    QDate dateEmission = ui->DateDebutAssurance->date();
+    QDate dateExpiration = ui->DateFinAssurance->date();
+    QString matricule = ui->comboBoxMatriculeVehicule->currentText();
+
+    Assurance assurance(type,assureur,tarif,dateEmission,dateExpiration,matricule);
+
+    if (type=="" || assureur=="" || tarif == NULL || matricule == "")
+    {
+        text="VERRIFIEZ LES CHAMPS SI ILS SONT CORRECT !";
+        popUp->setPopupText(text);
+        popUp->show("warning");
+    }else if (assurance.ajoutAssurance())
+    {
+        ui->tableAssurance->setModel(contratAssurance.afficherAssurance());//refresh
+        text="LOCATION AJOUTER AVEC SUCCES";
+        popUp->setPopupText(text);
+        popUp->show("succes");
+    }
+}
+
+void interfaceContrat::on_pushButton_ModifierAssurance_clicked()
+{
+
+}
+
+void interfaceContrat::on_pushButton_SupprimerAssurance_clicked()
+{
+
+}
+
+void interfaceContrat::on_pushButton_RechercherAssurance_clicked()
+{
+
+}
+
+void interfaceContrat::on_PBclose_clicked()
+{
+    close();
+}
+
+void interfaceContrat::UpadateTime()
+{
+    QTime time = QTime::currentTime();
+    QString text = time.toString("hh:mm:ss");
+
+    ui->time->setText(text);
+}
+
+

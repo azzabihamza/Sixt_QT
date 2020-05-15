@@ -25,12 +25,18 @@ public:
 
     bool Login(QString u, QString p);
     bool loggedIn;
-    QDateTime currentDate;
+    QDate currentDate ;
+
 
 
 
 private slots:
     void on_pushButton_connexion_clicked();
+    void UpadateTime();
+
+    void on_shutDown_clicked();
+
+
 
 private:
     Ui::login *ui;

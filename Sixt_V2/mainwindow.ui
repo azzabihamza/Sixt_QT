@@ -15,92 +15,248 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
- 	background: #dbdbdb;
+ 	
 }
-QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+
+#topBar_2 {
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.273, stop:0 rgba(20,40, 80, 100), stop:1 rgba(252, 126, 47, 100));
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButtonContrat">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget {
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.273, stop:0 rgba(20,40, 80, 100), stop:1 rgba(252, 126, 47, 100));
+}</string>
+   </property>
+   <widget class="QWidget" name="topBar_2" native="true">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>70</y>
-      <width>351</width>
-      <height>151</height>
+      <x>0</x>
+      <y>10</y>
+      <width>1301</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="topBar">
+     <item>
+      <widget class="QLabel" name="logo">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>288</width>
+         <height>76</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="nomAgent">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deconnexion">
+       <property name="minimumSize">
+        <size>
+         <width>190</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#deconnexion {
+	background : #000000;
+	color : white;
+}</string>
+       </property>
+       <property name="text">
+        <string>Deconnexion</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="Background">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>155</y>
+      <width>1251</width>
+      <height>691</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonClient">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>70</y>
-      <width>351</width>
-      <height>151</height>
+      <x>150</x>
+      <y>240</y>
+      <width>941</width>
+      <height>521</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushButtonVehicule">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButtonContrat">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButtonClient">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButtonPayment">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButtonMarketing">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushButtonPersonel">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="pushButtonVehicule">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>70</y>
-      <width>351</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonPayment">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>280</y>
-      <width>351</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonMarketing">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>280</y>
-      <width>351</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonPersonel">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>280</y>
-      <width>351</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
+   <zorder>Background</zorder>
+   <zorder>topBar_2</zorder>
+   <zorder>gridLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

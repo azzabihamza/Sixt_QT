@@ -12,5 +12,15 @@
         <file>src/img/logo.png</file>
         <file>src/img/off.png</file>
         <file>src/img/restart.png</file>
+        <file>src/Historique.txt</file>
+        <file>src/img/logo2.jpg</file>
+        <file>src/img/man-avatar.png</file>
+        <file>src/img/handshake.png</file>
+        <file>src/img/historique.png</file>
+        <file>src/img/insurance.png</file>
+        <file>src/img/social-media.png</file>
+        <file>src/img/bg.png</file>
+        <file>src/img/traffic.png</file>
+        <file>src/img/transport.png</file>
     </qresource>
 </RCC>

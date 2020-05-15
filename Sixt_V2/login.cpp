@@ -1,6 +1,8 @@
 #include "login.h"
 #include "connexion.h"
 #include <QPixmap>
+#include <QTimer>
+#include <QDate>
 #include <QString>
 #include "ui_login.h"
 
@@ -15,9 +17,14 @@ login::login(QWidget *parent) :
     QPixmap shutdown(":/src/img/src/img/off.png");
     QPixmap restart(":/src/img/src/img/restart.png");
 
-    currentDate = QDateTime::currentDateTime();
-    QString dateTimeString = currentDate.toString();
-    ui->currentDateTime->setText(dateTimeString);
+
+
+    ui->currentDateTime->setText(QDate::currentDate().toString());
+
+    QTimer *timer=new QTimer(this);
+        connect(timer,SIGNAL(timeout()),this,SLOT(UpadateTime()));
+        timer->start(1000);
+
 
     ui->restart->setFlat(true);
     ui->restart->setFocusPolicy(Qt::NoFocus);
@@ -51,6 +58,7 @@ void login::on_pushButton_connexion_clicked()
         this->loggedIn = true;
         close();
         mainwindow = new MainWindow(this);
+        mainwindow->setNomAgent(userName);
         mainwindow->show();
 
 
@@ -84,3 +92,17 @@ bool login::Login(QString u, QString p)
     }
     return false;
 }
+
+void login::UpadateTime()
+{
+    QTime time = QTime::currentTime();
+    QString text = time.toString("hh:mm:ss");
+
+    ui->time->setText(text);
+}
+
+void login::on_shutDown_clicked()
+{
+    close();
+}
+

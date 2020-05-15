@@ -42,6 +42,8 @@ public:
     bool modifierContratLocation(int);
     QSqlQueryModel *rechercherContrat(QString);
     QSqlQueryModel *afficherContrat();
+    QSqlQueryModel *triDateDec();
+    QSqlQueryModel *triDateCroi();
 
 
 };

@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "interfacecontrat.h"
+#include "interfacevehicule.h"
+#include "login.h"
 
 #include <QPixmap>
 
@@ -10,6 +12,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     button =new QPushButton();
+
+    QPixmap logo(":/src/img/src/img/logo.png");
+    QPixmap shutdown(":/src/img/src/img/off.png");
+
+    QPixmap bg(":/src/img/src/img/bg.png");
+
+    ui->deconnexion->setFlat(true);
+    ui->deconnexion->setFocusPolicy(Qt::NoFocus);
+    ui->deconnexion->setIcon(shutdown);
+    ui->deconnexion->setIconSize(QSize(40,40));
+    ui->deconnexion->setStyleSheet("QPushButton:flat:pressed { border: none; };");
+
+    ui->nomAgent->setText(nomAgent);
+
+    ui->Background->setPixmap(bg);
+    ui->logo->setPixmap(logo.scaled(150,150,Qt::KeepAspectRatio));
 
 
 
@@ -74,6 +92,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QString MainWindow::getNomAgent()
+{
+    return nomAgent;
+}
+
+void MainWindow::setNomAgent(QString nom)
+{
+    this->nomAgent = nom;
+}
+
 
 
 
@@ -82,8 +110,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonContrat_clicked()
 {
-    interfaceContrat GestionLocation;
-    GestionLocation.setModal(true);
-    GestionLocation.exec();
+    interfaceContrat *GestionLocation;
+    GestionLocation = new interfaceContrat(this);
+    GestionLocation->show();
 
+}
+
+void MainWindow::on_pushButtonVehicule_clicked()
+{
+    interfaceVehicule *GestionVehicule;
+    GestionVehicule = new interfaceVehicule(this);
+    GestionVehicule->show();
+}
+
+void MainWindow::on_deconnexion_clicked()
+{
+    login* w = new login();
+    w->show();
+    close();
 }

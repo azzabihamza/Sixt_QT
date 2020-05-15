@@ -96,6 +96,44 @@ QSqlQueryModel* ContratLocation::afficherContrat()
     return model;
 }
 
+QSqlQueryModel *ContratLocation::triDateDec()
+{
+    QSqlQuery* query = new QSqlQuery();
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    query->prepare("select * from CONTRATLOCATION ORDER BY IDCONTRAT DESC");
+    query->exec();
+
+    model->setQuery(*query);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID CONTRAT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE FIN"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ID AGENCE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("ID AGENT"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("REFERENCE VEHICULE"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("ID CLIENT"));
+    return model;
+}
+
+QSqlQueryModel *ContratLocation::triDateCroi()
+{
+    QSqlQuery* query = new QSqlQuery();
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    query->prepare("select * from CONTRATLOCATION ORDER BY IDCONTRAT");
+    query->exec();
+
+    model->setQuery(*query);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID CONTRAT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DATE FIN"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ID AGENCE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("ID AGENT"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("REFERENCE VEHICULE"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("ID CLIENT"));
+    return model;
+}
+
 QSqlQueryModel* ContratLocation::rechercherContrat(QString id)
 {
 

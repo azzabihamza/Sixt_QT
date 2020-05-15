@@ -3,7 +3,9 @@
 
 #include <QDialog>
 #include "contratlocation.h"
+#include "assurance.h"
 #include "mainwindow.h"
+#include "popup.h"
 
 namespace Ui {
 class interfaceContrat;
@@ -17,7 +19,13 @@ public:
     explicit interfaceContrat(QWidget *parent = nullptr);
     ~interfaceContrat();
 
+    void loadHistorique();
+
+
 private slots:
+
+
+
     void on_pushButton_AjouterContrat_clicked();
 
     void on_pushButton_ModifieContrat_clicked();
@@ -28,11 +36,57 @@ private slots:
 
     void on_tableContratLocation_activated(const QModelIndex &index);
 
+    void on_pushButton_2_clicked();
+
+    void on_imprimer_clicked();
+
+    void on_PBlocation_clicked();
+
+    void on_PBassurance_clicked();
+
+    void on_PBhistorique_clicked();
+
+    void on_PBacceuil_clicked();
+
+    void on_PBacceuil_4_clicked();
+
+    void on_PBacceuil_5_clicked();
+
+
+    void on_comboBox_Idagence_activated(const QString &arg1);
+
+    void on_comboBox_Idagent_activated(const QString &arg1);
+
+    void on_comboBox_Reference_activated(const QString &arg1);
+
+    void on_comboBox_Idclient_activated(const QString &arg1);
+
+    void on_pushButton_ModifierAssurance_clicked();
+
+    void on_pushButton_AjouterAssurance_clicked();
+
+    void on_pushButton_SupprimerAssurance_clicked();
+
+    void on_pushButton_RechercherAssurance_clicked();
+
+    void on_PBclose_clicked();
+
+    void UpadateTime();
+
+    void on_radioButton_new_clicked();
+
+    void on_radioButton_old_clicked();
+
 private:
+
     Ui::interfaceContrat *ui;
     ContratLocation contratLocation;
+    Assurance contratAssurance;
     QDate dateSystem;
     QString text;
+    popup *popUp;
+
+
 
 };
 

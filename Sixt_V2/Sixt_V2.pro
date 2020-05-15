@@ -1,5 +1,9 @@
 QT       += core gui
 QT += sql
+QT += printsupport
+QT += charts
+QT += network serialport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -19,23 +23,35 @@ SOURCES += \
     assurance.cpp \
     connexion.cpp \
     contratlocation.cpp \
+    contravention.cpp \
     interfacecontrat.cpp \
+    interfacevehicule.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    popup.cpp \
+    statistiques.cpp \
+    vehicules.cpp
 
 HEADERS += \
     assurance.h \
     connexion.h \
     contratlocation.h \
+    contravention.h \
     interfacecontrat.h \
+    interfacevehicule.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    popup.h \
+    statistiques.h \
+    vehicules.h
 
 FORMS += \
     interfacecontrat.ui \
+    interfacevehicule.ui \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    statistiques.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
