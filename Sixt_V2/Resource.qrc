@@ -22,5 +22,6 @@
         <file>src/img/bg.png</file>
         <file>src/img/traffic.png</file>
         <file>src/img/transport.png</file>
+        <file>src/contrat_location.pdf</file>
     </qresource>
 </RCC>

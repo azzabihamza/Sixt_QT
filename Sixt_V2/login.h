@@ -7,6 +7,7 @@
 #include <QDate>
 #include <QTime>
 #include <QDateTime>
+#include <database.h>
 
 #include "mainwindow.h"
 
@@ -43,6 +44,7 @@ private:
     QString userName;
     QString password ;
     MainWindow *mainwindow;
+    DataBase                    *db;
 
 };
 

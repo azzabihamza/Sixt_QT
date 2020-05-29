@@ -6,7 +6,7 @@ Assurance::Assurance()
     Reference=0;
     Type="";
     Assureur="";
-    Tarif=0;
+    Tarif=NULL;
     dateEmission = QDate::currentDate();
     dateExpiration = QDate::currentDate();
     matriculeVehicule ="";
@@ -27,7 +27,7 @@ QString Assurance::getMatriculeVehicule()
     return matriculeVehicule;
 }
 
-Assurance::Assurance(QString type,QString assureur,float tarif,QDate dEmission, QDate dExpiration, QString matricule)
+Assurance::Assurance(QString type,QString assureur,double tarif,QDate dEmission, QDate dExpiration, QString matricule)
 {
     this->Type = type;
     this->Assureur = assureur;
@@ -52,7 +52,7 @@ QString Assurance::getAssureur()
     return Assureur;
 }
 
-float Assurance::getTarif()
+double Assurance::getTarif()
 {
     return Tarif;
 }

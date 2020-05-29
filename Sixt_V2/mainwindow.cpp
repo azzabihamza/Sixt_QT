@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include "interfacecontrat.h"
 #include "interfacevehicule.h"
+#include "interfaceclient.h"
+#include "interfacepersonel.h"
+#include "interfacemarketing.h"
 #include "login.h"
 
 #include <QPixmap>
@@ -112,6 +115,9 @@ void MainWindow::on_pushButtonContrat_clicked()
 {
     interfaceContrat *GestionLocation;
     GestionLocation = new interfaceContrat(this);
+   /* GestionLocation->setWindowFlags(GestionLocation->windowFlags() | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
+    GestionLocation->setWindowState(GestionLocation->windowState() | Qt::WindowFullScreen);*/
+    GestionLocation->setWindowState(Qt::WindowMaximized);
     GestionLocation->show();
 
 }
@@ -120,6 +126,9 @@ void MainWindow::on_pushButtonVehicule_clicked()
 {
     interfaceVehicule *GestionVehicule;
     GestionVehicule = new interfaceVehicule(this);
+    /*GestionVehicule->setWindowFlags(GestionVehicule->windowFlags() | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
+    GestionVehicule->setWindowState(GestionVehicule->windowState() | Qt::WindowFullScreen);*/
+    GestionVehicule->setWindowState(Qt::WindowMaximized);
     GestionVehicule->show();
 }
 
@@ -128,4 +137,30 @@ void MainWindow::on_deconnexion_clicked()
     login* w = new login();
     w->show();
     close();
+}
+
+void MainWindow::on_pushButtonClient_clicked()
+{
+    interfaceClient *GestionClient;
+    GestionClient = new interfaceClient(this);
+    /*GestionClient->setWindowFlags(GestionClient->windowFlags() | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
+    GestionClient->setWindowState(GestionClient->windowState() | Qt::WindowFullScreen);*/
+    GestionClient->setWindowState(Qt::WindowMaximized);
+    GestionClient->show();
+}
+
+void MainWindow::on_pushButtonPersonel_clicked()
+{
+    InterfacePersonel *GestionPersonnel;
+    GestionPersonnel = new InterfacePersonel(this);
+    GestionPersonnel->setWindowState(Qt::WindowMaximized);
+    GestionPersonnel->show();
+}
+
+void MainWindow::on_pushButtonMarketing_clicked()
+{
+    interfaceMarketing *GestionMarketing;
+    GestionMarketing = new interfaceMarketing(this);
+    GestionMarketing->setWindowState(Qt::WindowMaximized);
+    GestionMarketing->show();
 }

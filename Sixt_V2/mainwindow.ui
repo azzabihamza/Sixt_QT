@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1296</width>
-    <height>913</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1920</width>
+    <height>1080</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -33,9 +39,15 @@
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>1301</width>
+      <width>1920</width>
       <height>111</height>
      </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1920</width>
+      <height>111</height>
+     </size>
     </property>
     <layout class="QHBoxLayout" name="topBar">
      <item>
@@ -105,9 +117,21 @@
      <rect>
       <x>20</x>
       <y>155</y>
+      <width>1880</width>
+      <height>850</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>1880</width>
+      <height>850</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
       <width>1251</width>
       <height>691</height>
-     </rect>
+     </size>
     </property>
     <property name="text">
      <string>TextLabel</string>
@@ -117,9 +141,9 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>240</y>
-      <width>941</width>
-      <height>521</height>
+      <y>190</y>
+      <width>1591</width>
+      <height>771</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -138,7 +162,83 @@
      <property name="bottomMargin">
       <number>10</number>
      </property>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushButtonMarketing">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="pushButtonPersonel">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButtonPayment">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="2">
+      <widget class="QPushButton" name="pushButtonClient">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>151</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton:hover{
+        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
+                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
       <widget class="QPushButton" name="pushButtonVehicule">
        <property name="minimumSize">
         <size>
@@ -177,80 +277,30 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButtonClient">
-       <property name="minimumSize">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>300</width>
-         <height>151</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      </spacer>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushButtonPayment">
-       <property name="minimumSize">
+     <item row="0" column="3">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>300</width>
-         <height>151</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButtonMarketing">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>151</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="pushButtonPersonel">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>151</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </widget>
@@ -263,7 +313,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1296</width>
+     <width>1920</width>
      <height>26</height>
     </rect>
    </property>

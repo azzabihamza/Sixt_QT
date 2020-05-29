@@ -31,6 +31,12 @@ private slots:
 
     void on_deconnexion_clicked();
 
+    void on_pushButtonClient_clicked();
+
+    void on_pushButtonPersonel_clicked();
+
+    void on_pushButtonMarketing_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString nomAgent;

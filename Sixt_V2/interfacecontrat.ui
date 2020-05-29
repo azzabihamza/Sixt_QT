@@ -9,20 +9,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1364</width>
-    <height>807</height>
+    <width>1980</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>-10</x>
      <y>0</y>
-     <width>1371</width>
-     <height>801</height>
+     <width>1980</width>
+     <height>1080</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -32,17 +35,29 @@
 }
 
 QPushButton {
-        border: 1px solid #6593cf;
-        border-radius: 2px;
-        padding: 5px 15px 2px 5px;
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,
-                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);
-        color: #006aff;
-        font: bold large &quot;Arial&quot;;
-        height: 30px;
+      padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 150px;
+  height: 60px;
+  font-family: Sans-Serif;
 }
 
-
+#PBlocation ,#PBassurance ,#PBhistorique ,#PBclose{
+	  background-color: white;
+  	border: 3px solid #ff7315;
+  	color: #ff7315;
+ 	 text-transform: uppercase;
+  	height: inherit;
+ 	 width: inherit;
+  	transition: background-color 0.5s ease, color 1s ease;
+ 	 cursor: pointer;
+  	box-shadow: 10px 10px rgba(77, 77, 77, 0.5);
+}
+#PBlocation:hover ,#PBassurance:hover ,#PBhistorique:hover ,#PBclose:hover {
+  background-color: #ff7315;
+  color: white;
+}
 
 
 QPushButton:pressed {
@@ -80,16 +95,16 @@ color: #2da5d5;
 }</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QWidget" name="horizontalWidget" native="true">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>1361</width>
-       <height>91</height>
+       <x>10</x>
+       <y>20</y>
+       <width>1931</width>
+       <height>111</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -122,6 +137,15 @@ color: #2da5d5;
             <height>50</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Sans-Serif</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string> Location</string>
           </property>
@@ -142,6 +166,15 @@ color: #2da5d5;
             <height>50</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Sans-Serif</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string>Assurance</string>
           </property>
@@ -158,6 +191,15 @@ color: #2da5d5;
             <width>200</width>
             <height>50</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Sans-Serif</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="text">
            <string>Historique</string>
@@ -201,8 +243,17 @@ color: #2da5d5;
           <height>50</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>Sans-Serif</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>Fermer</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -211,10 +262,10 @@ color: #2da5d5;
     <widget class="QWidget" name="verticalWidget" native="true">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>110</y>
-       <width>1341</width>
-       <height>681</height>
+       <x>30</x>
+       <y>160</y>
+       <width>1891</width>
+       <height>891</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -251,8 +302,8 @@ color: #2da5d5;
       <rect>
        <x>30</x>
        <y>20</y>
-       <width>1321</width>
-       <height>761</height>
+       <width>1911</width>
+       <height>1041</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -332,8 +383,8 @@ color: #2da5d5;
             <widget class="QPushButton" name="pushButton">
              <property name="font">
               <font>
-               <family>Arial</family>
-               <pointsize>10</pointsize>
+               <family>Sans-Serif</family>
+               <pointsize>-1</pointsize>
                <weight>75</weight>
                <italic>false</italic>
                <bold>true</bold>
@@ -363,8 +414,8 @@ color: #2da5d5;
           <widget class="QTableView" name="tableContratLocation">
            <property name="minimumSize">
             <size>
-             <width>700</width>
-             <height>400</height>
+             <width>1200</width>
+             <height>500</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -401,55 +452,15 @@ color: white;
             <widget class="QPushButton" name="pushButton_AjouterContrat">
              <property name="font">
               <font>
-               <family>Arial</family>
-               <pointsize>10</pointsize>
+               <family>Sans-Serif</family>
+               <pointsize>-1</pointsize>
                <weight>75</weight>
                <italic>false</italic>
                <bold>true</bold>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">QPushButton:hover{
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #ffd9aa,
-                stop :   0.5 #ffbb6e, stop :   0.55 #feae42, stop :   1.0 #fedb74);
-}
-
-QPushButton {
-        border: 1px solid #6593cf;
-        border-radius: 2px;
-        padding: 5px 15px 2px 5px;
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #f5f9ff,
-                stop :   0.5 #c7dfff, stop :   0.55 #afd2ff, stop :   1.0 #c0dbff);
-        color: #006aff;
-        font: bold large &quot;Arial&quot;;
-        height: 30px;
-}
-
-
-
-
-QPushButton:pressed {
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #c0dbff,
-        stop :   0.5 #cfd26f, stop :   0.55 #c7df6f, stop :   1.0 #f5f9ff);
-        padding-top: 2px;
-        padding-left: 3px;
-
-}
-
-
-QPushButton:on {
-        background: qlineargradient(x1 : 0, y1 : 0, x2 : 0, y2 :   1, stop :   0.0 #5AA72D,
-        stop :   0.5 #B3E296, stop :   0.55 #B3E296, stop :   1.0 #f5f9ff);
-        padding-top: 2px;
-        padding-left: 3px;
-}
-
-QPushButton:disabled {
-        background: transparent #e5e9ee;
-        padding-top: 2px;        
-        padding-left: 3px;
-        color: black;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Ajouter Contrat</string>
@@ -460,8 +471,8 @@ QPushButton:disabled {
             <widget class="QPushButton" name="pushButton_ModifieContrat">
              <property name="font">
               <font>
-               <family>Arial</family>
-               <pointsize>10</pointsize>
+               <family>Sans-Serif</family>
+               <pointsize>-1</pointsize>
                <weight>75</weight>
                <italic>false</italic>
                <bold>true</bold>
@@ -473,11 +484,18 @@ QPushButton:disabled {
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButton_afficherContrat">
+             <property name="text">
+              <string>Afficher Contrat</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pushButton_supprimerContrat">
              <property name="font">
               <font>
-               <family>Arial</family>
-               <pointsize>10</pointsize>
+               <family>Sans-Serif</family>
+               <pointsize>-1</pointsize>
                <weight>75</weight>
                <italic>false</italic>
                <bold>true</bold>
@@ -914,8 +932,8 @@ QPushButton:disabled {
       <rect>
        <x>30</x>
        <y>20</y>
-       <width>1321</width>
-       <height>761</height>
+       <width>1911</width>
+       <height>1031</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -939,7 +957,32 @@ QPushButton:disabled {
       <property name="spacing">
        <number>20</number>
       </property>
-      <item row="1" column="1">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>CONTRAT D'ASSURANCE NUMERO : </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="numeroAssurance">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="2">
        <spacer name="horizontalSpacer_11">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -952,7 +995,7 @@ QPushButton:disabled {
         </property>
        </spacer>
       </item>
-      <item row="2" column="2">
+      <item row="2" column="3">
        <spacer name="verticalSpacer_4">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -964,36 +1007,6 @@ QPushButton:disabled {
          </size>
         </property>
        </spacer>
-      </item>
-      <item row="0" column="2">
-       <layout class="QHBoxLayout" name="horizontalLayout_15">
-        <item>
-         <spacer name="horizontalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="PBacceuil_4">
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Acceuil</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
       </item>
       <item row="1" column="0">
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1088,7 +1101,30 @@ QPushButton:disabled {
            <item row="2" column="1">
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="lineEdit_Tarif"/>
+              <widget class="QDoubleSpinBox" name="tarifA">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <double>99999.990000000005239</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_14">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
              <item>
               <widget class="QLabel" name="label_10">
@@ -1190,32 +1226,7 @@ QPushButton:disabled {
         </item>
        </layout>
       </item>
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_18">
-        <item>
-         <widget class="QLabel" name="label_13">
-          <property name="font">
-           <font>
-            <pointsize>11</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>CONTRAT D'ASSURANCE NUMERO : </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="numeroAssurance">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="2">
+      <item row="1" column="3">
        <widget class="QWidget" name="verticalWidget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <property name="leftMargin">
@@ -1274,8 +1285,18 @@ QPushButton:disabled {
           <widget class="QTableView" name="tableAssurance">
            <property name="minimumSize">
             <size>
-             <width>782</width>
-             <height>400</height>
+             <width>1200</width>
+             <height>200</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableView" name="assuranceTableView">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>300</height>
             </size>
            </property>
           </widget>
@@ -1295,6 +1316,13 @@ QPushButton:disabled {
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QPushButton" name="addAssuranceButton">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QPushButton" name="pushButton_AjouterAssurance">
              <property name="text">
@@ -1321,6 +1349,36 @@ QPushButton:disabled {
         </layout>
        </widget>
       </item>
+      <item row="0" column="3">
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <item>
+         <spacer name="horizontalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PBacceuil_4">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Acceuil</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </widget>
@@ -1330,8 +1388,8 @@ QPushButton:disabled {
       <rect>
        <x>29</x>
        <y>20</y>
-       <width>1321</width>
-       <height>761</height>
+       <width>1911</width>
+       <height>1031</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1414,7 +1472,7 @@ QPushButton:disabled {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>550</height>
+          <height>700</height>
          </size>
         </property>
        </widget>

@@ -4,6 +4,11 @@ using namespace std;
 Connexion::Connexion()
 {
 }
+
+QSqlDatabase Connexion::getDb()
+{
+    return db;
+}
 bool Connexion::ouvrirConnexion()
 {
     bool test=false;

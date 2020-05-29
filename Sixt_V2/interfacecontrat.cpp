@@ -10,6 +10,9 @@
 #include <QPrintDialog>
 #include <QPainter>
 #include <QCalendarWidget>
+#include <QFileDialog>
+#include <QDesktopServices>
+
 
 interfaceContrat::interfaceContrat(QWidget *parent) :
     QDialog(parent),
@@ -62,6 +65,8 @@ interfaceContrat::interfaceContrat(QWidget *parent) :
     // ****** INTERFACE GESTION CONTRAT LOCATION ***********//
 
     ui->tableContratLocation->setModel(contratLocation.afficherContrat());
+    ui->tableContratLocation->resizeRowsToContents();
+    ui->tableContratLocation->resizeColumnsToContents();
     loadHistorique();
 
     QSqlQueryModel* modal = new QSqlQueryModel();
@@ -69,18 +74,21 @@ interfaceContrat::interfaceContrat(QWidget *parent) :
     QSqlQueryModel* modalReference = new QSqlQueryModel();
     QSqlQueryModel* modalClient = new QSqlQueryModel();
 
-    modal->setQuery("select NUMERO from AGENCE");
+    modal->setQuery("select ID_AGENCE from AGENCE");
     ui->comboBox_Idagence->setModel(modal);
+    ui->comboBox_Idagence->setCurrentIndex(-1);
 
-
-    modalAgent->setQuery("select ID from AGENT");
+    modalAgent->setQuery("select ID from PERSONNEL");
     ui->comboBox_Idagent->setModel(modalAgent);
+    ui->comboBox_Idagent->setCurrentIndex(-1);
 
     modalReference->setQuery("select REF from VEHICULES");
     ui->comboBox_Reference->setModel(modalReference);
+    ui->comboBox_Reference->setCurrentIndex(-1);
 
     modalClient->setQuery("select CIN from CLIENT");
     ui->comboBox_Idclient->setModel(modalClient);
+    ui->comboBox_Idclient->setCurrentIndex(-1);
 
     ui->dateEdit_debutLocation->setCalendarPopup(true);
     ui->dateEdit_finLocation->setCalendarPopup(true);
@@ -93,10 +101,14 @@ interfaceContrat::interfaceContrat(QWidget *parent) :
 
     QSqlQueryModel* modalMatricule = new QSqlQueryModel();
     ui->tableAssurance->setModel(contratAssurance.afficherAssurance());//refresh
+    ui->tableAssurance->resizeRowsToContents();
+    ui->tableAssurance->resizeColumnsToContents();
 
     ui->comboBoxTypeAssurance->addItems({ "Assurance au tiers", "Assurance au tiers plus", "Assurance tous risques", "Assurance auto au kilomètre" });
+    ui->comboBoxTypeAssurance->setCurrentIndex(-1);
     modalMatricule->setQuery("select PLAQUE from VEHICULES");
     ui->comboBoxMatriculeVehicule->setModel(modalMatricule);
+    ui->comboBoxMatriculeVehicule->setCurrentIndex(-1);
 
     ui->DateDebutAssurance->setCalendarPopup(true);
     ui->DateDebutAssurance->setDate(dateSystem);
@@ -105,6 +117,22 @@ interfaceContrat::interfaceContrat(QWidget *parent) :
 
     ui->PBacceuil_4->setIcon(home);
     ui->PBacceuil_4->setIconSize(QSize(30,30));
+
+
+
+        /* Initialize the model to represent the data indicating the names of the columns
+         * */
+        this->setupModel(ASSURANCE,
+                         QStringList() << trUtf8("REFERENCE")
+                                             << trUtf8("TYPE")
+                                             << trUtf8("ASSUREUR")
+                                             << trUtf8("TARIF")
+                                             << trUtf8("DATE EMiSSION")
+                                             << trUtf8("DATE EXPIRATION")
+                                             << trUtf8("MATRICULE")
+                   );
+        this->createUI();
+
 }
 
 interfaceContrat::~interfaceContrat()
@@ -130,10 +158,11 @@ void interfaceContrat::on_pushButton_AjouterContrat_clicked()
 {
     QDate DateDebut = ui->dateEdit_debutLocation->date();
     QDate DateFin = ui->dateEdit_finLocation->date();
-    int IdAgence = ui->lineEdit_Idagence->text().toInt();
-    QString IdAgent = ui->lineEdit_Idagent->text();
-    QString referenceVehicule = ui->lineEdit_Reference->text();
-    QString IdClient = ui->lineEdit_Idclient->text();
+    //int IdAgence = ui->lineEdit_Idagence->text().toInt();
+    int IdAgence = ui->comboBox_Idagence->currentText().toInt();
+    QString IdAgent = ui->comboBox_Idagent->currentText();
+    QString referenceVehicule = ui->comboBox_Reference->currentText();
+    QString IdClient = ui->comboBox_Idclient->currentText();
 
     ContratLocation location(DateDebut,DateFin,IdAgence,IdAgent,referenceVehicule,IdClient);
 
@@ -167,10 +196,10 @@ void interfaceContrat::on_pushButton_AjouterContrat_clicked()
 
         ui->dateEdit_debutLocation->clear();
         ui->dateEdit_finLocation->clear();
-        ui->lineEdit_Idagence->clear();
-        ui->lineEdit_Idagent->clear();
-        ui->lineEdit_Reference->clear();
-        ui->lineEdit_Idclient->clear();
+        ui->comboBox_Idagence->setCurrentIndex(-1);
+        ui->comboBox_Idagent->setCurrentIndex(-1);
+        ui->comboBox_Reference->setCurrentIndex(-1);
+        ui->comboBox_Idclient->setCurrentIndex(-1);
 
         ui->label_8->setText("");
 
@@ -291,7 +320,7 @@ void interfaceContrat::on_radioButton_old_clicked()
 void interfaceContrat::on_tableContratLocation_activated(const QModelIndex &index)
 {
 
-
+    int i;
     QString val=ui->tableContratLocation->model()->data(index).toString();
 
     QSqlQuery query;
@@ -305,10 +334,21 @@ void interfaceContrat::on_tableContratLocation_activated(const QModelIndex &inde
             ui->label_8->setText(query.value(0).toString());
             ui->dateEdit_debutLocation->setDate(query.value(1).toDate());
             ui->dateEdit_finLocation->setDate(query.value(2).toDate());
-            ui->lineEdit_Idagent->setText(query.value(3).toString());
+
+            i = ui->comboBox_Idagent->findData(query.value(3));
+            if(i != -1){
+                ui->comboBox_Idagent->setCurrentIndex(i);
+            }
+
+            i = ui->comboBox_Idagence->findData(query.value(4));
+            if(i != -1){
+                ui->comboBox_Idagence->setCurrentIndex(i);
+            }
+
+           /* ui->lineEdit_Idagent->setText(query.value(3).toString());
             ui->lineEdit_Idagence->setText(query.value(4).toString());
             ui->lineEdit_Reference->setText(query.value(5).toString());
-            ui->lineEdit_Idclient->setText(query.value(6).toString());
+            ui->lineEdit_Idclient->setText(query.value(6).toString());*/
         }
     }
 }
@@ -320,12 +360,30 @@ void interfaceContrat::on_pushButton_2_clicked()
 
 void interfaceContrat::on_imprimer_clicked()
 {
+
     QPrinter printer;
         printer.setPrinterName("Contrat");
         QPrintDialog dialog(&printer,this);
         if(dialog.exec()== QDialog::Rejected) return;//cntrl de voir si ca marche ou pas
         ui->Historique->print(&printer);
 }
+
+
+void interfaceContrat::on_pushButton_afficherContrat_clicked()
+{
+  int IdContrat = ui->label_8->text().toInt();
+  if(IdContrat==0){
+
+          text="ERREUR VEUILLEZ SELECTIONNER UN CONTRAT A AFFICHER  !";
+          popUp->setPopupText(text);
+          popUp->show("error");
+      }else
+      {
+          contratLocation.ContratPDF(ui->label_8->text());
+          QDesktopServices::openUrl(QUrl("E:\\Projects\\Projet QT\\Sixt_V2\\srccontrat_location.pdf", QUrl::TolerantMode));
+      }
+}
+
 
 void interfaceContrat::on_PBlocation_clicked()
 {
@@ -387,7 +445,7 @@ void interfaceContrat::on_pushButton_AjouterAssurance_clicked()
 {
     QString type = ui->comboBoxTypeAssurance->currentText();
     QString assureur = ui->lineEdit_Assureur->text();
-    float tarif = ui->lineEdit_Tarif->text().toFloat();
+    double tarif = ui->tarifA->value();
     QDate dateEmission = ui->DateDebutAssurance->date();
     QDate dateExpiration = ui->DateFinAssurance->date();
     QString matricule = ui->comboBoxMatriculeVehicule->currentText();
@@ -437,3 +495,54 @@ void interfaceContrat::UpadateTime()
 }
 
 
+
+void interfaceContrat::on_addAssuranceButton_clicked()
+{
+    /* Create a dialogue and connect it to signal the completion
+         * of the form slot refresh data representation model
+         * */
+        DialogAddAssurance *addAssuranceDialog = new DialogAddAssurance(-1,this);
+        connect(addAssuranceDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateModels()));
+
+        addAssuranceDialog->setWindowTitle(trUtf8("Ajouter une assurance"));
+        addAssuranceDialog->show();
+}
+
+void interfaceContrat::slotUpdateModels()
+{
+    modelAssurance->select();
+}
+
+void interfaceContrat::slotEditRecord(QModelIndex index)
+{
+        DialogAddAssurance *addDeviceDialog = new DialogAddAssurance(index.row());
+        connect(addDeviceDialog, SIGNAL(signalReady()), this, SLOT(slotUpdateModel()));
+
+        addDeviceDialog->setWindowTitle(trUtf8("Modifier une assurance"));
+        addDeviceDialog->exec();
+}
+
+void interfaceContrat::setupModel(const QString &tableName, const QStringList &headers)
+{
+    modelAssurance = new QSqlTableModel(this);
+    modelAssurance->setTable(tableName);
+    modelAssurance->select();
+    /* Set the columns names in a table with sorted data
+     * */
+    for(int i = 0, j = 0; i < modelAssurance->columnCount(); i++, j++){
+        modelAssurance->setHeaderData(i,Qt::Horizontal,headers[j]);
+    }
+}
+
+void interfaceContrat::createUI()
+{
+       ui->assuranceTableView->setModel(modelAssurance);
+       ui->assuranceTableView->setColumnHidden(0, true);
+       ui->assuranceTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+       ui->assuranceTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+       ui->assuranceTableView->resizeColumnsToContents();
+       ui->assuranceTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+       ui->assuranceTableView->horizontalHeader()->setStretchLastSection(true);
+
+       connect(ui->assuranceTableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotEditRecord(QModelIndex)));
+}

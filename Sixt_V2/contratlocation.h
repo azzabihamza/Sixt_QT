@@ -4,7 +4,9 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSqlTableModel>
 #include <QDate>
+#include "connexion.h"
 
 using namespace std;
 
@@ -19,6 +21,34 @@ private:
     QString ID_Agent;
     QString ReferenceVehicule;
     QString ID_Client;
+
+    QString code;
+    QString dateD;
+    QString dateF;
+    QString agence;
+    QString agent;
+    QString reference;
+    QString client;
+
+    QString client_code;
+    QString client_nom;
+    QString client_prenom;
+    QString client_date_naissance;
+    QString client_adresse;
+    QString client_num_tel;
+    QString client_email;
+    QString client_permis_type;
+    QString client_permis_numero;
+    QString client_date_del_permis;
+    QString client_datefindel_permis;
+    QString client_cin;
+
+    QString marque;
+    QString carburant;
+    QString plaque;
+    QString age;
+    QString prix;
+
 
 
 public:
@@ -44,6 +74,9 @@ public:
     QSqlQueryModel *afficherContrat();
     QSqlQueryModel *triDateDec();
     QSqlQueryModel *triDateCroi();
+
+    void ContratPDF(QString);
+    QSqlTableModel *setTable();
 
 
 };

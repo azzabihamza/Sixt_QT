@@ -12,18 +12,18 @@ private:
     int Reference;
     QString Type;
     QString Assureur;
-    float Tarif;
+    double Tarif;
     QDate dateEmission;
     QDate dateExpiration;
     QString matriculeVehicule;
 public:
     Assurance();
-    Assurance(QString,QString,float,QDate,QDate,QString);
+    Assurance(QString,QString,double,QDate,QDate,QString);
 
     int getReference();
     QString getType();
     QString getAssureur();
-    float getTarif();
+    double getTarif();
     QDate getDateEmission();
     QDate getDateExpiration();
     QString getMatriculeVehicule();

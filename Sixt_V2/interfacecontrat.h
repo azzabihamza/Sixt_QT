@@ -6,6 +6,10 @@
 #include "assurance.h"
 #include "mainwindow.h"
 #include "popup.h"
+#include <QSqlTableModel>
+
+#include <database.h>
+#include <dialogaddassurance.h>
 
 namespace Ui {
 class interfaceContrat;
@@ -77,6 +81,12 @@ private slots:
 
     void on_radioButton_old_clicked();
 
+    void on_pushButton_afficherContrat_clicked();
+
+    void on_addAssuranceButton_clicked();
+    void slotUpdateModels();
+    void slotEditRecord(QModelIndex index);
+
 private:
 
     Ui::interfaceContrat *ui;
@@ -86,7 +96,11 @@ private:
     QString text;
     popup *popUp;
 
+    QSqlTableModel              *modelAssurance;
 
+private:
+    void setupModel(const QString &tableName, const QStringList &headers);
+    void createUI();
 
 };
 

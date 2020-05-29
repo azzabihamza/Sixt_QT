@@ -6,10 +6,16 @@
 #include <QString>
 #include "ui_login.h"
 
+
 login::login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::login)
 {
+    /* The first step is to create an object for the database
+         * and initialize the database connection
+         * */
+        db = new DataBase();
+        db->connectToDataBase();
     ui->setupUi(this);
 
 
@@ -39,6 +45,7 @@ login::login(QWidget *parent) :
     ui->shutDown->setStyleSheet("QPushButton:flat:pressed { border: none; };");
 
     ui->logo->setPixmap(logo.scaled(150,150,Qt::KeepAspectRatio));
+    ui->userPassword->setEchoMode(QLineEdit::Password);
 }
 
 login::~login()
@@ -59,6 +66,9 @@ void login::on_pushButton_connexion_clicked()
         close();
         mainwindow = new MainWindow(this);
         mainwindow->setNomAgent(userName);
+        /*mainwindow->setWindowFlags(mainwindow->windowFlags() | Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint);
+        mainwindow->setWindowState(mainwindow->windowState() | Qt::WindowFullScreen);*/
+        mainwindow->setWindowState(Qt::WindowMaximized);
         mainwindow->show();
 
 

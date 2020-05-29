@@ -11,6 +11,7 @@ private:
     QSqlDatabase db;
 public:
     Connexion();
+    QSqlDatabase getDb();
     bool ouvrirConnexion();
     void fermerConnexion();
 };
