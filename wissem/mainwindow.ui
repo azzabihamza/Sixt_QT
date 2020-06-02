@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>814</width>
+    <height>505</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestion des Clients</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>publicite</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_3">
+           <attribute name="title">
+            <string>Ajouter</string>
+           </attribute>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="geometry">
+             <rect>
+              <x>-10</x>
+              <y>-10</y>
+              <width>721</width>
+              <height>411</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <widget class="QLabel" name="label_4">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>40</y>
+               <width>47</width>
+               <height>13</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>ID PUB</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_5">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>70</y>
+               <width>47</width>
+               <height>13</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>NOM PUB</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_6">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>100</y>
+               <width>71</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>DATE PUB</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit_id_2">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>40</y>
+               <width>113</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit_nom_2">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>70</y>
+               <width>113</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="on_pb_ajouter_clicked">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>220</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Ajouter</string>
+             </property>
+            </widget>
+            <widget class="QDateEdit" name="dateEdit_evenements">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>100</y>
+               <width>111</width>
+               <height>22</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QRadioButton" name="radioButton">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>200</y>
+               <width>161</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Trier d'ordre croissant</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="on_pb_actualiser">
+             <property name="geometry">
+              <rect>
+               <x>530</x>
+               <y>170</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Actualiser</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_8">
+             <property name="geometry">
+              <rect>
+               <x>290</x>
+               <y>170</y>
+               <width>48</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>recherche</string>
+             </property>
+            </widget>
+            <widget class="QTableView" name="tablPublicite_2">
+             <property name="geometry">
+              <rect>
+               <x>250</x>
+               <y>20</y>
+               <width>321</width>
+               <height>131</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit_rech">
+             <property name="geometry">
+              <rect>
+               <x>350</x>
+               <y>170</y>
+               <width>116</width>
+               <height>20</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QRadioButton" name="radioButton_2">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>220</y>
+               <width>181</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Trier d'ordre decroissant</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="on_pb_supprimer">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>220</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Supprimer</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="on_pb_modifier">
+             <property name="geometry">
+              <rect>
+               <x>100</x>
+               <y>220</y>
+               <width>75</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Modifier</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>160</y>
+               <width>31</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>id pub</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBox_m">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>160</y>
+               <width>91</width>
+               <height>22</height>
+              </rect>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Promotions</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_7">
+           <attribute name="title">
+            <string>Ajouter </string>
+           </attribute>
+           <widget class="QLineEdit" name="lineEdit_Nom_p">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>70</y>
+              <width>113</width>
+              <height>20</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_pourcentage">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>110</y>
+              <width>113</width>
+              <height>20</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_ID_promo">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>30</y>
+              <width>113</width>
+              <height>20</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>61</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Nom promo</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_11">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>110</y>
+              <width>81</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>pourcentage</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_9">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>30</y>
+              <width>47</width>
+              <height>14</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>IDpromo</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="on_pb_ajouter_p">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>250</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_12">
+            <property name="geometry">
+             <rect>
+              <x>290</x>
+              <y>190</y>
+              <width>61</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Recherche</string>
+            </property>
+           </widget>
+           <widget class="QTableView" name="tableView_promo">
+            <property name="geometry">
+             <rect>
+              <x>270</x>
+              <y>30</y>
+              <width>301</width>
+              <height>141</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="on_pb_trier_p_croissante">
+            <property name="geometry">
+             <rect>
+              <x>320</x>
+              <y>240</y>
+              <width>201</width>
+              <height>18</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Trier d'ordre croissant</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="on_pb_actualiser_2">
+            <property name="geometry">
+             <rect>
+              <x>530</x>
+              <y>190</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Actuialiser</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_rech_2">
+            <property name="geometry">
+             <rect>
+              <x>350</x>
+              <y>190</y>
+              <width>113</width>
+              <height>20</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="on_pb_trier_promo_decroissante">
+            <property name="geometry">
+             <rect>
+              <x>320</x>
+              <y>270</y>
+              <width>151</width>
+              <height>18</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Trier d'ordre decroissant</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="on_pb_supprimer_promo">
+            <property name="geometry">
+             <rect>
+              <x>200</x>
+              <y>250</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Supprimer</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+             <rect>
+              <x>530</x>
+              <y>230</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Statistiques</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="on_pb_modifier_promo">
+            <property name="geometry">
+             <rect>
+              <x>110</x>
+              <y>250</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>modifier</string>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="comboBox_p">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>170</y>
+              <width>101</width>
+              <height>21</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_13">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>170</y>
+              <width>47</width>
+              <height>14</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>idpromo</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>814</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
